@@ -13,7 +13,7 @@
     "mongodb": "^2.1.0"
   },
   "bin":{
-    "jams-server":"./server.js"
+    "jams-server":"node ./server.js"
   },
 	"repository":"https://github.com/hughrawlinson/JAMS-server.git"
 }
