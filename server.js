@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 (function(){
   var Hapi = require('hapi');
   var MongoClient = require('mongodb').MongoClient;
