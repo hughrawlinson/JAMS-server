@@ -1,6 +1,6 @@
 {
   "name": "jams-server",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A RESTful interface to a MongoDB backed store of JAMS format data for reproducible MIR research",
   "main": "index.js",
   "scripts": {
@@ -12,5 +12,8 @@
     "hapi": "^11.1.2",
     "mongodb": "^2.1.0"
   },
+  "bin":{
+    "jams-server":"./bin/start.js"
+  }
 	"repository":"https://github.com/hughrawlinson/JAMS-server.git"
 }
