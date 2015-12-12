@@ -1,6 +1,7 @@
 (function(){
   var Hapi = require('hapi');
   var MongoClient = require('mongodb').MongoClient;
+  var ObjectID = require('mongodb').ObjectID;
 
 
   // Connection URL
@@ -21,24 +22,63 @@
 
     var jams = db.collection('jams');
 
-    var insert = function(request,rb){
-      jams.insert(request.body,function(err,result){
-        if(err){
-          console.error('failed to insert jam '+request.body.file_metadata.identifiers.filename);
-          rb({status:'500'});
-        }
-        else{
-          rb({status:'ok'});
-        }
-      });
-    }
-
     server.route({
       method: 'PUT',
       path: '/jams',
       handler: function (request, reply) {
-        insert(request,function(rb){
-          return rb;
+        var payload = {
+          data: request.payload
+        };
+        jams.insertOne(payload,function(err,result){
+          if(err){
+            console.error('failed to insert jam '+request.body.file_metadata.identifiers.filename);
+            reply({status:'500'});
+          }
+          else{
+            var r = JSON.parse(result);
+            return reply({
+              id:r.electionId,
+            });
+          }
+        });
+      }
+    });
+
+    server.route({
+      method: 'GET',
+      path: '/jams/{id}',
+      handler: function(request, reply){
+        // TODO: Validate id, throw 400
+        jams.findOne({_id:ObjectID(request.params.id)},function(err,result){
+          if(err){
+            // TODO: Check if this is meant to be a 404//5XX
+            reply({status:500});
+          }
+          else{
+            if(!result){
+              reply({status:404});
+            }
+            reply(result.data);
+          }
+        });
+      }
+    });
+
+    server.route({
+      method: 'GET',
+      path: '/jams',
+      handler: function(request, reply){
+        jams.find({}).limit(30).toArray(function(err,result){
+          if(err){
+            reply({status:500});
+          }
+          else{
+            var ids = [];
+            result.map(function(val){
+              ids.push(val._id);
+            });
+            reply({jams:ids});
+          }
         });
       }
     });
