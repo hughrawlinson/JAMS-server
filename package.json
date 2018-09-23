@@ -10,10 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "hapi": "^17.0.0",
-    "mongodb": "^3.0.0"
+    "mongodb": "^3.0.0",
+    "node-getopt": "^0.2.3"
   },
-  "bin":{
-    "jams-server":"./server.js"
+  "bin": {
+    "jams-server": "./server.js"
   },
-	"repository":"https://github.com/hughrawlinson/JAMS-server.git"
+  "repository": "https://github.com/hughrawlinson/JAMS-server.git"
 }
