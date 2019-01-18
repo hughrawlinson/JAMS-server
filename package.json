@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "hapi": "^17.0.0",
+    "hapi": "^18.0.0",
     "mongodb": "^3.0.0",
     "node-getopt": "^0.2.3"
   },
