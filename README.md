@@ -1,5 +1,7 @@
 # JAMS Ingestion Server
 
+_Nobody used this, so I archived it. If you would like to use it and take ownership of it, let me know._
+
 This is a small Node.js server that exposes a CR (as in CRUD) RESTful API for generic JAMS data, backed by MongoDB. It could (and should) be extended to provide read and update features specific to the JAMS format so that it can be deployed as a generic server for a wide variety of musicological data storage, however at the moment it's streamlined for my specific research into velocity aware trajectorial playlisting.
 
 ## Usage
